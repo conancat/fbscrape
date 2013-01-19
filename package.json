@@ -1,7 +1,7 @@
 {
   "name": "fbscrap",
   "version": "0.0.2",
-  "description": "Facebook Page Photo Scrapper",
+  "description": "Facebook Feed Photo Scrapper",
   "bin": {
     "fbscrap": "./bin/fbscrap"
   },
@@ -16,7 +16,9 @@
     "facebook",
     "scrapper",
     "photo",
-    "graph"
+    "images",
+    "feed"
+    "api"
   ],
   "author": "Grey Ang",
   "license": "BSD",

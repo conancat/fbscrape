@@ -1,6 +1,6 @@
-# Facebook Page Photo Scrapper
+# Facebook Feed Photo Scrapper
 
-This is an experiment on writing an Facebook page image scrapper with CoffeeScript and NodeJS. 
+This is an experiment on writing a Facebook Feed photo scrapper with CoffeeScript and NodeJS. 
 
 Using openly available data on the Facebook Graph API we look for public images that are posted by a page (or person) and download them to our disk drive. 
 
