@@ -57,7 +57,7 @@ Type `fbscrap -h` for full options.
 
 ## Contact
 
-Let's talk! I'm on (Twitter)[https://twitter.com/conancat], (Reddit)[http://www.reddit.com/user/conancat], or you can email me at conancat@gmail.com. 
+Let's talk! I'm on [Twitter](https://twitter.com/conancat), [Reddit](http://www.reddit.com/user/conancat), or you can email me at conancat@gmail.com. 
 
 ## Disclaimer
 
