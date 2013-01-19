@@ -2,7 +2,6 @@
 fs = require "fs"
 async = require "async"
 request = require "request"
-_ = require "underscore"
 moment = require "moment"
 ProgressBar = require "progress"
 program = require "commander"
