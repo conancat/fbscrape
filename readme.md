@@ -14,7 +14,7 @@ I'm not a stalker, I swear!
 
 Make sure you have NodeJS and NPM installed. Then do: 
 
-    npm install fbscrap -g
+    npm install fbscrape -g
 
 ## How To Use
 
@@ -26,13 +26,13 @@ First, you need to have two things:
 
 To run the command, type
 
-    fbscrap -p <page id> -t <access token>
+    fbscrape -p <page id> -t <access token>
 
-Type `fbscrap -h` for full options.
+Type `fbscrape -h` for full options.
 
     ===Facebook Page Image Scraper===
 
-      Usage: fbscrap [options]
+      Usage: fbscrape [options]
 
       Options:
 

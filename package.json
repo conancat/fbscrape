@@ -3,7 +3,7 @@
   "version": "0.0.4",
   "description": "Facebook Feed Photo Scraper",
   "bin": {
-    "fbscrap": "./bin/fbscrape"
+    "fbscrape": "./bin/fbscrape"
   },
   "dependencies": {
     "moment": "~1.7.2",
