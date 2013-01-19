@@ -45,6 +45,10 @@ Type `fbscrape -h` for full options.
         -l, --limit <limit>    Maximum number of images that you want to scrape, defaults to 10
         -o, --output <output>  Where to store the images. Defaults to ./images
 
+## Screenshot
+![Facebook Scraper Screenshot](http://i.imgur.com/MOZsXMN.png "Facebook Scraper Screenshot")
+
+
 ## Some pages to test out with
 
 * Tard the Grumpy Cat -- `thegrumpycat`
