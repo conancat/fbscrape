@@ -30,7 +30,7 @@ class Scrapper
       console.error """
         \nPage ID not supplied. Please supply a Facebook Page Id, e.g. 
         
-        scrapper -p kpopmusiclove -t <accesstoken>
+        fbscrap -p kpopmusiclove -t <accesstoken>
 
       """
       return process.exit(1)
@@ -43,7 +43,7 @@ class Scrapper
 
         Then you can run: 
 
-        scrapper -p <facebook page id> -t <access token>
+        fbscrap -p <facebook page id> -t <access token>
 
       """
       return process.exit(1)
