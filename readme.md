@@ -45,6 +45,7 @@ Type `fbscrap -h` for full options.
 
 * KPop Music Videos -- `kpopmusiclove`
 * 9gag -- `9gag`
+* Tard the Grumpy Cat -- `thegrumpycat`
 * I am a programmer, I have no life -- `241806149201604`
 * George Takei -- `georgehtakei`
 * Bikini Babes (hot girls) -- `bikinibabespics`
