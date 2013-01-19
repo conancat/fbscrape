@@ -47,8 +47,8 @@ Type `fbscrap -h` for full options.
 * 9gag -- `9gag`
 * I am a programmer, I have no life -- `241806149201604`
 * George Takei -- `georgehtakei`
-* Bikini Babes (for the guys/gay ladies) -- `bikinibabespics`
-* L'homme (for the ladies/gay guys) -- `Lahomme`
+* Bikini Babes (hot girls) -- `bikinibabespics`
+* L'homme (hot guys) -- `Lahomme`
 
 ## Disclaimer
 
