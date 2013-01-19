@@ -1,8 +1,8 @@
 # Facebook Feed Photo Scrapper
 
-This is an experiment on writing a Facebook Feed photo scrapper with CoffeeScript and NodeJS. 
+This is an experiment on writing a Facebook Feed photo scrapper command-line tool with CoffeeScript and NodeJS. 
 
-Using openly available data on the Facebook Graph API we look for public images that are posted by a page (or person) and download them to our disk drive. 
+Using openly available data on the Facebook Graph API we look for public images that are posted by a page (or person) and save them to our disk drives.
 
 Good for backing up images for Facebook pages and other purposes that I shall not mention.
 
@@ -18,7 +18,7 @@ Make sure you have NodeJS and NPM installed. Then do:
 
 ## How To Use
 
-For basic use, you need to have two things:
+First, you need to have two things:
 
 * The page ID of the Facebook page you want to scrap, e.g. if the page is [https://www.facebook.com/Starbucks](https://www.facebook.com/Starbucks), the page ID will be `starbucks`
 
@@ -61,7 +61,9 @@ Let's talk! I'm on [Twitter](https://twitter.com/conancat), [Reddit](http://www.
 
 ## Disclaimer
 
-This tool is meant for personal use only. The author of this tool is not responsible for any damages or loss caused by the use of this tool. With great power comes great responsibility. You are responsible to keep your fapping material safe and sound.
+This tool is meant for personal use only. The author of this tool is not responsible for any damages or loss caused by the use of this tool. With great power comes great responsibility. You are responsible to keep your fapping material safe and sound. You're welcome to fork this code, just let me know what kinda cool things you did with it! 
+
+
 
 
 
