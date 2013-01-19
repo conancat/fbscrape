@@ -1,0 +1,25 @@
+{
+  "name": "fbscrap",
+  "version": "0.0.1",
+  "description": "Facebook Page Photo Scrapper",
+  "bin": "./bin/fbscrap",
+  "dependencies": {
+    "moment": "~1.7.2",
+    "progress": "~0.1.0",
+    "commander": "~1.1.1",
+    "async": "~0.1.22",
+    "request": "~2.12.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Facebook",
+    "Page",
+    "Photo",
+    "Scrapper"
+  ],
+  "author": "Grey Ang",
+  "license": "BSD"
+}
