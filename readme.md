@@ -6,9 +6,13 @@ Using openly available data on the Facebook Graph API we look for public images 
 
 Good for backing up images for Facebook pages and other purposes that I shall not mention.
 
+This is a work in progress. If you find any bugs or have any suggestions, please let me know! 
+
+I'm not a stalker, I swear! 
+
 ## Install
 
-Make sure you have NodeJS installed. Then do: 
+Make sure you have NodeJS and NPM installed. Then do: 
 
     npm install fbscrap -g
 
@@ -50,6 +54,10 @@ Type `fbscrap -h` for full options.
 * George Takei -- `georgehtakei`
 * Bikini Babes (hot girls) -- `bikinibabespics`
 * L'homme (hot guys) -- `Lahomme`
+
+## Contact
+
+Let's talk! I'm on (Twitter)[https://twitter.com/conancat], (Reddit)[http://www.reddit.com/user/conancat], or you can email me at conancat@gmail.com. 
 
 ## Disclaimer
 
