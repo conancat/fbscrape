@@ -2,7 +2,7 @@
 
 This is an experiment on writing an Facebook page image scrapper with CoffeeScript and NodeJS. 
 
-Using openly available data on the Facebook Graph API we look for images that are posted by a page and download them to our local machine. 
+Using openly available data on the Facebook Graph API we look for public images that are posted by a page (or person) and download them to our disk drive. 
 
 Good for backing up images for Facebook pages and other purposes that I shall not mention.
 
@@ -40,6 +40,15 @@ Type `fbscrap -h` for full options.
                                https://developers.facebook.com/tools/explorer
         -l, --limit <limit>    Maximum number of images that you want to scrap, defaults to 10
         -o, --output <output>  Where to store the images. Defaults to ./images
+
+## Some pages to test out with
+
+* KPop Music Videos -- `kpopmusiclove`
+* 9gag -- `9gag`
+* I am a programmer, I have no life -- `241806149201604`
+* George Takei -- `georgehtakei`
+* Bikini Babes (for the guys/gay ladies) -- `bikinibabespics`
+* L'homme (for the ladies/gay guys) -- `Lahomme`
 
 ## Disclaimer
 

@@ -82,6 +82,7 @@ class Scrapper
     @nextPageLink = "" # Link to next page to get list of page links
     @images = [] # Array of image links to download later
     @bar = {} # Progress bar
+    @reachedEndOfFeed = false
 
     @init()
 
@@ -139,7 +140,10 @@ class Scrapper
       if response.error then return callback response.error
 
       # Store the next page link
-      @nextPageLink = response.paging.next
+      if response.paging?.next
+        @nextPageLink = response.paging.next
+      else
+        @reachedEndOfFeed = true
 
       # Get image link from each response
       entries = response.data
@@ -148,6 +152,11 @@ class Scrapper
       # If the imageLinks array is less than limit, get more links first
       # If it is already the limit, then go to next step
       async.forEach entries, @parseFeedEntry, (err) =>
+
+        # If already reached end of feed, don't do anything, just go back 
+        if @reachedEndOfFeed
+          return callback null
+
         if @images.length < @limit
           @getImages callback
         else
@@ -229,7 +238,7 @@ class Scrapper
       width: 20
 
     # Start downloading images
-    async.forEachLimit @images, 5, @downloadImage, callback
+    async.forEachLimit @images, 3, @downloadImage, callback
 
   downloadImage: (image, callback) =>
     # Create the image name path
