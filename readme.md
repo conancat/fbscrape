@@ -47,11 +47,10 @@ Type `fbscrape -h` for full options.
 
 ## Some pages to test out with
 
-* KPop Music Videos -- `kpopmusiclove`
-* 9gag -- `9gag`
 * Tard the Grumpy Cat -- `thegrumpycat`
 * I am a programmer, I have no life -- `241806149201604`
 * George Takei -- `georgehtakei`
+* KPop Music Videos -- `kpopmusiclove`
 * Bikini Babes (hot girls) -- `bikinibabespics`
 * L'homme (hot guys) -- `Lahomme`
 
