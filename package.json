@@ -1,6 +1,6 @@
 {
   "name": "fbscrap",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Facebook Feed Photo Scraper",
   "bin": {
     "fbscrap": "./bin/fbscrap"
