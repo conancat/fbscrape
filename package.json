@@ -1,7 +1,7 @@
 {
   "name": "fbscrap",
   "version": "0.0.3",
-  "description": "Facebook Feed Photo Scrapper",
+  "description": "Facebook Feed Photo Scraper",
   "bin": {
     "fbscrap": "./bin/fbscrap"
   },
@@ -14,7 +14,7 @@
   },
   "keywords": [
     "facebook",
-    "scrapper",
+    "scraper",
     "photo",
     "images",
     "feed",
