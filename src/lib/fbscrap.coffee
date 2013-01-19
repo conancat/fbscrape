@@ -207,6 +207,9 @@ class Scrapper
       json: true
     , (err, body, response) =>
 
+      if @images.length is @limit
+        return callback null
+
       # Handle errors
       if err then return callback err
       if response.error
@@ -219,10 +222,13 @@ class Scrapper
       link = response.images[0].source
       datetime = response.created_time
 
-      @downloadImage 
+      image = 
         link: link
         datetime: datetime
-      , callback
+
+      @images.push image
+
+      @downloadImage image, callback
 
   downloadImage: (image, callback) =>
     # Create the image name path
@@ -233,7 +239,6 @@ class Scrapper
     imagePath = @pageDir + "/"+ imageName
 
     cb = =>
-      @images.push image
       @getImagePageBar.tick()
       callback null
 
