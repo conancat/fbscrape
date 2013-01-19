@@ -6,7 +6,6 @@ moment = require "moment"
 ProgressBar = require "progress"
 program = require "commander"
 
-
 # Scrapper
 # ========
 
