@@ -2,7 +2,9 @@
   "name": "fbscrap",
   "version": "0.0.1",
   "description": "Facebook Page Photo Scrapper",
-  "bin": "./bin/fbscrap",
+  "bin": {
+    "fbscrap": "./bin/fbscrap"
+  },
   "dependencies": {
     "moment": "~1.7.2",
     "progress": "~0.1.0",
@@ -17,5 +19,16 @@
     "graph"
   ],
   "author": "Grey Ang",
-  "license": "BSD"
+  "license": "BSD",
+  "directories": {
+    "doc": "docs"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/conancat/fbscrap.git"
+  }
 }
