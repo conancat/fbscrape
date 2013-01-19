@@ -82,16 +82,17 @@ class Scrapper
     @bar = {} # Progress bar
     @reachedEndOfFeed = false
 
+    @getImagePageBar ?= new ProgressBar '-- Downloading images [:bar] :percent :current/:total', 
+      total: @limit
+      width: 20
+
     @init()
 
   init: ->
-    console.log "Facebook Page ID: #{@fbPageId}\n"
-
     async.series
       getPageInfo: @getPageInfo
-      getImages: @getImages
       createFolders: @createFolders
-      downloadImages: @downloadImages
+      getImages: @getImages
     , (err) =>
       if err 
         console.error "\n\n Error:"
@@ -105,6 +106,8 @@ class Scrapper
   getPageInfo: (callback) =>
     url = "https://graph.facebook.com/#{@fbPageId}?access_token=#{@accessToken}"
 
+    console.log "--Page Id: #{@fbPageId}"
+
     request.get url, 
       json: true
     , (err, body, response) =>
@@ -117,18 +120,26 @@ class Scrapper
       pageName = response.name
       @pageDir = @outputDir + "/#{pageName}"
 
+      console.log "--Page name: #{pageName}\n"
+
       callback null
+
+  createFolders: (callback) =>
+    # Create store directory
+    if not fs.existsSync @outputDir
+      fs.mkdirSync @outputDir
+
+    # Create directory for page
+    if not fs.existsSync @pageDir
+      fs.mkdirSync @pageDir
+
+    callback null
 
   getImages: (callback) =>
     if @nextPageLink.length
       url = @nextPageLink
     else
-      url = "https://graph.facebook.com/#{@fbPageId}/feed?fields=link,to&access_token=#{@accessToken}"
-
-    # Create a progress bar to show progress
-    @getImagePageBar ?= new ProgressBar '-- Getting image links [:bar] :percent :current/:total', 
-      total: @limit
-      width: 20
+      url = "https://graph.facebook.com/#{@fbPageId}/feed?fields=link,to&limit=100&access_token=#{@accessToken}"
 
     request.get url, 
       json: true
@@ -187,10 +198,7 @@ class Scrapper
 
     imagePageId = matches[1]
     
-    @getImage imagePageId, (err) =>
-      if err then return callback err
-      @getImagePageBar.tick()
-      callback null
+    @getImage imagePageId, callback
 
   getImage: (imagePageId, callback) =>
     url = "https://graph.facebook.com/#{imagePageId}?fields=images&access_token=#{@accessToken}"
@@ -211,43 +219,22 @@ class Scrapper
       link = response.images[0].source
       datetime = response.created_time
 
-      @images.push
+      @downloadImage 
         link: link
         datetime: datetime
-
-      callback null
-
-  createFolders: (callback) =>
-    # Create store directory
-    if not fs.existsSync @outputDir
-      fs.mkdirSync @outputDir
-
-    # Create directory for page
-    if not fs.existsSync @pageDir
-      fs.mkdirSync @pageDir
-
-    callback null
-
-  downloadImages: (callback) =>
-    # Create a progress bar to show progress
-    console.log "\n"
-    @downloadImageBar ?= new ProgressBar '-- Downloading images [:bar] :percent :current/:total', 
-      total: @images.length
-      width: 20
-
-    # Start downloading images
-    async.forEachLimit @images, 3, @downloadImage, callback
+      , callback
 
   downloadImage: (image, callback) =>
     # Create the image name path
     # Using the image created time as the file name
 
     extension = image.link.match(/(jpg|png|gif)/)[1]
-    imageName = moment(image.datetime).format('DD_MM_YYYY_HH_mm_ss') + "." + extension
+    imageName = moment(image.datetime).format('YYYY_MM_DD_HH_mm_ss') + "." + extension
     imagePath = @pageDir + "/"+ imageName
 
     cb = =>
-      @downloadImageBar.tick()
+      @images.push image
+      @getImagePageBar.tick()
       callback null
 
     # If image already exists, skip downloading
