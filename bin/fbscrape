@@ -4,6 +4,6 @@ var path = require('path');
 var fs = require('fs');
 var lib = path.join(path.dirname(fs.realpathSync(__filename)), '../lib');
 
-var Scrapper = require(lib + '/fbscrap.js')
+var Scraper = require(lib + '/fbscrape.js')
 
-scrapper = new Scrapper();
+scraper = new Scraper();

@@ -6,20 +6,20 @@ moment = require "moment"
 ProgressBar = require "progress"
 program = require "commander"
 
-# Scrapper
+# Scraper
 # ========
 
-# Let's begin making our scrapper! 
+# Let's begin making our Scraper! 
 
-class Scrapper
+class Scraper
   constructor: ->
-    console.log "\n\n===Facebook Page Image Scrapper==="
+    console.log "\n\n===Facebook Page Image Scraper==="
 
     # Parse command line options
-    program.version("0.0.1")
-      .option("-p, --page <page>", "Facebook Page ID that you want to scrap. For example, https://www.facebook.com/starbucks page ID will be starbucks")
+    program.version("0.0.4")
+      .option("-p, --page <page>", "Facebook Page ID that you want to scrape. For example, https://www.facebook.com/starbucks page ID will be starbucks")
       .option("-t, --token <token>", "Your access token. Generate an access token from https://developers.facebook.com/tools/explorer")
-      .option("-l, --limit <limit>", "Maximum number of images that you want to scrap, defaults to 10")
+      .option("-l, --limit <limit>", "Maximum number of images that you want to scrape, defaults to 10")
       .option("-o, --output <output>", "Where to store the images. Defaults to ./images")
       .parse(process.argv)
 
@@ -28,7 +28,7 @@ class Scrapper
       console.error """
         \nPage ID not supplied. Please supply a Facebook Page Id, e.g. 
         
-        fbscrap -p kpopmusiclove -t <accesstoken>
+        fbscrape -p kpopmusiclove -t <accesstoken>
 
       """
       return process.exit(1)
@@ -41,7 +41,7 @@ class Scrapper
 
         Then you can run: 
 
-        fbscrap -p <facebook page id> -t <access token>
+        fbscrape -p <facebook page id> -t <access token>
 
       """
       return process.exit(1)
@@ -49,7 +49,7 @@ class Scrapper
     # Set program variables
     # =====================
 
-    # limit: maximum amount of images to scrap
+    # limit: maximum amount of images to scrape
     @limit = parseInt(program.limit) || 10
 
     # outputDir
@@ -57,7 +57,7 @@ class Scrapper
     @outputDir = program.output || "./images"
 
     # fbPageId:
-    # Page ID of the Facebook page we are scrapping. For example, 
+    # Page ID of the Facebook page we are scraping. For example, 
     #
     # Url: https://www.facebook.com/kpopmusiclove
     # PageId: kpopmusiclove
@@ -68,7 +68,7 @@ class Scrapper
     @fbPageId = program.page
 
     # accessToken:
-    # We need a valid access token for scrapping pages. Just go to 
+    # We need a valid access token for scraping pages. Just go to 
     # https://developers.facebook.com/tools/explorer
     # to get a temporary access token that you can use. For testing purposes
     # this access token will only last for 2 hours. 
@@ -255,4 +255,4 @@ class Scrapper
 
     request.get(image.link).pipe(writeStream)
 
-module.exports = Scrapper
+module.exports = Scraper
