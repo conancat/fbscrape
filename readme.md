@@ -24,7 +24,11 @@ First, you need to have two things:
 
 * Any active access token. You can get an access token by going to this page: [https://developers.facebook.com/tools/explorer](https://developers.facebook.com/tools/explorer)
 
-To run the command, type
+To start the scraping step-by-step wizard, type
+  
+    fbscrape
+
+For shorthand, you can just type
 
     fbscrape -p <page id> -t <access token>
 

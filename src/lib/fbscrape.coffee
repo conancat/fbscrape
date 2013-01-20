@@ -23,70 +23,66 @@ class Scraper
       .option("-o, --output <output>", "Where to store the images. Defaults to ./images")
       .parse(process.argv)
 
-    # Check if user supplied page ID
-    if not program.page
-      console.error """
-        \nPage ID not supplied. Please supply a Facebook Page Id, e.g. 
-        
-        fbscrape -p kpopmusiclove -t <accesstoken>
+    # Check for mandatory options
+    async.series 
+      checkPage: (callback) ->
+        if program.page then return callback null
 
-      """
-      return process.exit(1)
+        program.prompt "Page ID to scrape? (e.g. starbucks): ", (pageId) ->
+          program.page = pageId
+          callback null
 
-    # Check if user supplied access token
-    if not program.token
-      console.error """
-        \nAccess token not found. Please supply a valid access token. You can get one from
-        https://developers.facebook.com/tools/explorer
+      checkAccessToken: (callback) ->
+        if program.token then return callback null
 
-        Then you can run: 
+        program.prompt "Your Facebook Access token? (get one from https://developers.facebook.com/tools/explorer):\n ", (token) ->
+          program.token = token
+          callback null
 
-        fbscrape -p <facebook page id> -t <access token>
+    , (err) =>
 
-      """
-      return process.exit(1)
+      # Set program variables
 
-    # Set program variables
-    # =====================
+      # limit: maximum amount of images to scrape
+      @limit = parseInt(program.limit) || 10
 
-    # limit: maximum amount of images to scrape
-    @limit = parseInt(program.limit) || 10
+      # outputDir
+      # Where to store the images in 
+      @outputDir = program.output || "./images"
 
-    # outputDir
-    # Where to store the images in 
-    @outputDir = program.output || "./images"
+      # fbPageId:
+      # Page ID of the Facebook page we are scraping. For example, 
+      #
+      # Url: https://www.facebook.com/kpopmusiclove
+      # PageId: kpopmusiclove
+      # 
+      # Url: https://www.facebook.com/Starbucks?fref=ts
+      # PageId: Starbucks
 
-    # fbPageId:
-    # Page ID of the Facebook page we are scraping. For example, 
-    #
-    # Url: https://www.facebook.com/kpopmusiclove
-    # PageId: kpopmusiclove
-    # 
-    # Url: https://www.facebook.com/Starbucks?fref=ts
-    # PageId: Starbucks
+      @fbPageId = program.page
 
-    @fbPageId = program.page
+      # accessToken:
+      # We need a valid access token for scraping pages. Just go to 
+      # https://developers.facebook.com/tools/explorer
+      # to get a temporary access token that you can use. For testing purposes
+      # this access token will only last for 2 hours. 
 
-    # accessToken:
-    # We need a valid access token for scraping pages. Just go to 
-    # https://developers.facebook.com/tools/explorer
-    # to get a temporary access token that you can use. For testing purposes
-    # this access token will only last for 2 hours. 
+      @accessToken = program.token
 
-    @accessToken = program.token
+      # Some internal variables
+      @pageDir = "" # Page directory, where to store images later
+      @nextPageLink = "" # Link to next page to get list of page links
+      @images = [] # Array of image links to download later
+      @bar = {} # Progress bar
+      @reachedEndOfFeed = false
 
-    # Some internal variables
-    @pageDir = "" # Page directory, where to store images later
-    @nextPageLink = "" # Link to next page to get list of page links
-    @images = [] # Array of image links to download later
-    @bar = {} # Progress bar
-    @reachedEndOfFeed = false
+      @getImagePageBar ?= new ProgressBar '-- Downloading images [:bar] :percent :current/:total', 
+        total: @limit
+        width: 20
 
-    @getImagePageBar ?= new ProgressBar '-- Downloading images [:bar] :percent :current/:total', 
-      total: @limit
-      width: 20
+      console.log "\n Begin scraping!"
 
-    @init()
+      @init()
 
   init: ->
     async.series
@@ -106,7 +102,7 @@ class Scraper
   getPageInfo: (callback) =>
     url = "https://graph.facebook.com/#{@fbPageId}?access_token=#{@accessToken}"
 
-    console.log "--Page Id: #{@fbPageId}"
+    console.log "\n--Page Id: #{@fbPageId}"
 
     request.get url, 
       json: true
